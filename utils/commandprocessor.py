@@ -238,10 +238,10 @@ class CommandProcessor():
                 if alert_state == str(1): continue
 
                 if alert_value == 'price':
-                    alert_result = self.process_operation('price',alert_operation,coin_price, alert_target)
+                    alert_result = self.process_operation('price',alert_operation,coin_price, alert_target,coin_name)
 
                 elif alert_value == 'change24Hr':
-                    alert_result = self.process_operation('change24Hr',alert_operation,coin_change24h_value, alert_target)
+                    alert_result = self.process_operation('change24Hr',alert_operation,coin_change24h_value, alert_target,coin_name)
 
                 else:
                     alert_value = 'Invalid alert value {}!'.format(alert_value)
@@ -253,7 +253,7 @@ class CommandProcessor():
 
         return ret
 
-    def process_operation(self,tag, op, value, target):
+    def process_operation(self,tag, op, value, target,name):
         """Process alert operation
 
         Args:
@@ -261,6 +261,7 @@ class CommandProcessor():
             op (string): operation, [<,<=>,>=,==]
             value (string float): coin value i.e. 1.6
             target (string float): alert target i.e. 1.2
+            name (string): coin name, like XRP
 
         Returns:
             string: String to be posted telegram
@@ -268,19 +269,19 @@ class CommandProcessor():
 
         ret = None
         if op == '<':
-            ret = 'Alert: {} is {:.3f} less than your alert {:.3f} USD'.format(tag,float(value),float(target)) if float (value) < float(target) else None
+            ret = 'Alert: {} {} is {:.3f} less than your alert {:.3f} USD'.format(name,tag,float(value),float(target)) if float (value) < float(target) else None
 
         elif op == '<=':
-            ret = 'Alert: {} is {:.3f} less or equal than your alert {:.3f} USD'.format(tag,float(value),float(target)) if float (value) <= float(target) else None
+            ret = 'Alert: {} {} is {:.3f} less or equal than your alert {:.3f} USD'.format(name, tag,float(value),float(target)) if float (value) <= float(target) else None
 
         elif op == '>':
-            ret = 'Alert: {} is {:.3f} bigger than your alert {:.3f} USD'.format(tag,float(value),float(target)) if float (value) > float(target) else None
+            ret = 'Alert: {} {} is {:.3f} bigger than your alert {:.3f} USD'.format(name, tag,float(value),float(target)) if float (value) > float(target) else None
 
         elif op == '>=':
-            ret = 'Alert: {} is {:.3f} bigger or equal than your alert {:.3f} USD'.format(tag,float(value),float(target)) if float (value) >= float(target) else None
+            ret = 'Alert: {} {} is {:.3f} bigger or equal than your alert {:.3f} USD'.format(name, tag,float(value),float(target)) if float (value) >= float(target) else None
 
         elif op == '==':
-            ret = 'Alert: {} is {:.3f} equal with your alert {:.3f} USD'.format(tag,float(value),float(target)) if float (value) == float(target) else None
+            ret = 'Alert: {} {} is {:.3f} equal with your alert {:.3f} USD'.format(name, tag,float(value),float(target)) if float (value) == float(target) else None
 
         else:
             ret = 'Invalid operation {}'.format(op)
