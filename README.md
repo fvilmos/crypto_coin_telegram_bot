@@ -5,9 +5,9 @@ This application provides an interface through telegram application to inspect c
 By default the following crypto currenchies are listed: ETH,XRP,XLM,ADA,EOS,FIL,LRC,NMR,OMG,OXT,XTZ,ZRX,ADA
 
 <p align="center"> 
-  <img src="./info/list_alerts.jpg" alt="" width="200"></a>
-  <img src="./info/clear_alert1.jpg" alt="" width="200"></a>
-  <img src="./info/notification1.jpg" alt="" width="200"></a>
+  <img src="./info/list_alerts.jpg" alt="" width="250"></a>
+  <img src="./info/clear_alert1.jpg" alt="" width="250"></a>
+  <img src="./info/notification1.jpg" alt="" width="250"></a>
 </p>
 
 
